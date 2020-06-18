@@ -8,7 +8,7 @@
     "build": "tsc",
     "commit": "git-cz",
     "prepublishOnly": "yarn build",
-    "release": "standard-version"
+    "release": "standard-version --tag-prefix=\"\""
   },
   "files": [
     "dist"
