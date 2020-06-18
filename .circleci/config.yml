@@ -1,0 +1,124 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check {{ '/2.0/language-javascript/' | docs_url }} for more details
+#
+version: 2
+
+defaults: &defaults
+  working_directory: ~/nodejs-commitlint-semantic-release
+  docker:
+    - image: circleci/node:lts # documented at https://circleci.com/docs/2.0/circleci-images/
+
+jobs:
+  build:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run:
+          name: Installing dependencies
+          command: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - persist_to_workspace:
+          root: ~/nodejs-commitlint-semantic-release
+          paths: [.]
+
+  test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/nodejs-commitlint-semantic-release
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run:
+          name: Running tests
+          command: yarn test
+
+  deploy-production:
+    <<: *defaults
+
+    steps:
+      - attach_workspace:
+          at: ~/nodejs-commitlint-semantic-release
+
+      - run:
+          name: Avoid unknown hosts for Github
+          command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+
+      - add_ssh_keys:
+          fingerprints:
+            - "7d:7c:5c:e5:74:8c:d7:b6:52:a9:bb:bf:a8:0b:cf:bc"
+
+      - run:
+          name: Setup Github User
+          command: git config user.email ${GITHUB_USER_MAIL} && git config user.name ${GITHUB_USER_NAME}
+
+      - run:
+          name: Bump version
+          command: yarn release
+
+      - run:
+          name: Authenticate with NPM registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+
+      - run:
+          name: Publishing on NPM registry
+          command: npm publish
+
+      - run:
+          name: Send CHANGELOG and tag to Github
+          command: git push --follow-tags origin master
+
+workflows:
+  version: 2
+  build-and-deploy-on-hold:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+
+      - test:
+          requires:
+            - build
+
+      - hold:
+          type: approval
+          requires:
+            - test
+
+      - deploy-development:
+          requires:
+            - test
+            - build
+          filters:
+            branches:
+              only: develop
+
+      - deploy-production:
+          requires:
+            - build
+            - test
+            - hold
+          filters:
+            branches:
+              only: master
