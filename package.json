@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
+    "commit": "git-cz",
     "prepublishOnly": "yarn build",
-    "release:first": "yarn release --first-release",
     "release": "standard-version"
   },
   "files": [
@@ -16,10 +16,17 @@
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
+    "commitizen": "^4.1.2",
+    "cz-conventional-changelog": "^3.2.0",
     "husky": "^4.2.5",
     "standard-version": "^8.0.0"
   },
   "dependencies": {
     "typescript": "^3.9.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
