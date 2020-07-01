@@ -1,7 +1,8 @@
 # Welcome to nodejs-commitlint-semantic-release 👋
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/wnqueiroz/nodejs-commitlint-semantic-release/blob/master/LICENSE)
+[![npm version](https://badge.fury.io/js/nodejs-commitlint-semantic-release.svg)](https://badge.fury.io/js/nodejs-commitlint-semantic-release)
+[![License: MIT](https://img.shields.io/github/license/wnqueiroz/nodejs-commitlint-semantic-release)](https://github.com/wnqueiroz/nodejs-commitlint-semantic-release/blob/master/LICENSE)
+[![CircleCI](https://circleci.com/gh/wnqueiroz/nodejs-commitlint-semantic-release.svg?style=shield)](https://circleci.com/gh/wnqueiroz/nodejs-commitlint-semantic-release)
 [![Twitter: wnqueiroz](https://img.shields.io/twitter/follow/wnqueiroz.svg?style=social)](https://twitter.com/wnqueiroz)
 
 > An example project on how to use commit messages to determine the version of your package in a fully automated way
