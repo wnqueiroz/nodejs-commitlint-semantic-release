@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/wnqueiroz/nodejs-commitlint-semantic-release/compare/1.1.2...1.2.0) (2020-07-03)
+
+
+### Funcionalidades
+
+* **foo:** simulating feature ([c9230fc](https://github.com/wnqueiroz/nodejs-commitlint-semantic-release/commit/c9230fc6f4c7d8cea997f6aa997c73946f7d6dd4))
+
 ### [1.1.2](https://github.com/wnqueiroz/nodejs-commitlint-semantic-release/compare/1.1.1...1.1.2) (2020-07-03)
 
 ### [1.1.1](https://github.com/wnqueiroz/nodejs-commitlint-semantic-release/compare/1.1.0...1.1.1) (2020-07-01)
