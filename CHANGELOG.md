@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/wnqueiroz/nodejs-commitlint-semantic-release/compare/1.2.2...1.3.0) (2020-08-21)
+
+
+### Funcionalidades
+
+* foo ([2b26236](https://github.com/wnqueiroz/nodejs-commitlint-semantic-release/commit/2b2623627a8ade57f9a68668c008709f671d3197))
+
+
+### Erros Corrigidos
+
+* foo ([41f39be](https://github.com/wnqueiroz/nodejs-commitlint-semantic-release/commit/41f39befb8f73b2bfaf3bba4664f1b2153d22838))
+
 ### [1.2.2](https://github.com/wnqueiroz/nodejs-commitlint-semantic-release/compare/1.2.1...1.2.2) (2020-08-17)
 
 
